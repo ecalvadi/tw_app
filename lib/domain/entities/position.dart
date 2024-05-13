@@ -13,8 +13,8 @@ class Position {
   int? id;
   Double? lat;
   Double? lon;
-  DateTime? createdAt;
-  DateTime? modifiedAt;
+  String? createdAt;
+  String? modifiedAt;
   int? userId;
 
   Position.fromJson(Map<String, dynamic>? json) {
@@ -22,8 +22,8 @@ class Position {
     id = json['id'] as int?;
     lat = json["lat"] as Double?;
     lon = json["lon"] as Double?;
-    createdAt = json["created_at"] as DateTime?;
-    modifiedAt = json["modified_at"] as DateTime?;
+    createdAt = json["created_at"] as String?;
+    modifiedAt = json["modified_at"] as String?;
     userId = json["user_id"] as int?;
   }
 

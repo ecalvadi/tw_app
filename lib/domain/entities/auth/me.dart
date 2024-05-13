@@ -11,18 +11,18 @@ class Me {
   int? id;
   String? name;
   String? email;
-  DateTime? emailVerifiedAt;
-  DateTime? createdAt;
-  DateTime? modifiedAt;
+  String? emailVerifiedAt;
+  String? createdAt;
+  String? modifiedAt;
 
   Me.fromJson(Map<String, dynamic>? json) {
     if (json == null) return;
     id = json['id'] as int?;
     name = json["name"] as String?;
     email = json["email"] as String?;
-    emailVerifiedAt = json["email_verified_at"] as DateTime?;
-    createdAt = json["created_at"] as DateTime?;
-    modifiedAt = json["modified_at"] as DateTime?;
+    emailVerifiedAt = json["email_verified_at"] as String?;
+    createdAt = json["created_at"] as String?;
+    modifiedAt = json["modified_at"] as String?;
   }
 
   Map<String, dynamic> toJson() {

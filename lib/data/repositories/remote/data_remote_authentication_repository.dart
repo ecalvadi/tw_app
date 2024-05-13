@@ -54,14 +54,14 @@ class DataRemoteAuthenticationRepository implements AuthenticationRepository {
         data: bodyRequest,
       );
 
-      _logger.finest('DataRemoteAuthenticationRepository getMe successful.');
+      _logger.finest('DataRemoteAuthenticationRepository login successful.');
       final Token token = Token.fromJson(response.data!);
 
       DioHelper().saveToken(token: token);
 
       return token;
     } catch (e) {
-      _logger.severe('DataRemoteAuthenticationRepository getMe unsuccessful.');
+      _logger.severe('DataRemoteAuthenticationRepository login unsuccessful.');
       rethrow;
     }
   }
