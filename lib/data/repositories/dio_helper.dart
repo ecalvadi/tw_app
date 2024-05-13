@@ -43,6 +43,22 @@ class DioHelper {
         options.headers['Authorization'] = 'Bearer ${token.accessToken}';
       }
 
+      final String? contentType;
+      final dynamic data = options.data;
+      if (data is FormData) {
+        contentType = Headers.multipartFormDataContentType;
+      } else if (data is Map) {
+        contentType = Headers.jsonContentType;
+      } else if (data is String) {
+        contentType = Headers.jsonContentType;
+      } else if (data != null) {
+        contentType =
+            Headers.textPlainContentType; // Can be removed if unnecessary.
+      } else {
+        contentType = Headers.jsonContentType;
+      }
+      options.contentType = contentType;
+
       return handler.next(options);
     }, onError: (error, handler) {
       // TODO: hacer algo con el error
@@ -50,6 +66,20 @@ class DioHelper {
     }));
 
     return dio;
+  }
+
+  Future<void> saveToken({required Token token}) async {
+    try {
+      final SharedPreferences preferences =
+          await SharedPreferences.getInstance();
+      await Future.wait([
+        preferences.setString(Constants.token, jsonEncode(token.toJson())),
+      ]);
+
+      _logger.finest('Token successfully stored.');
+    } catch (error, _) {
+      _logger.warning('_saveToken.', error);
+    }
   }
 
   static Future<String> getUrlBase() async {

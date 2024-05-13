@@ -7,4 +7,5 @@ abstract class AuthenticationRepository {
   Future<Token> login(Login login);
   Future<Me> getMe();
   Future<BuildContext> logout(BuildContext context);
+  Future<String?> checkAuth();
 }
