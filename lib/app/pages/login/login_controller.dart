@@ -36,7 +36,7 @@ class LoginController extends Controller {
 
   void loginOnNext(LoginAuthenticationUseCaseResponse? response) {
     if (response != null) {
-      if (response.token!.accessToken != null) {
+      if (response.token!.token != null) {
         presenter.getMe();
       }
     }

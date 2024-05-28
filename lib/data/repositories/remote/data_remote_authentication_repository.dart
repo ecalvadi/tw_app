@@ -32,10 +32,17 @@ class DataRemoteAuthenticationRepository implements AuthenticationRepository {
     try {
       final Response<Map<String, dynamic>> response =
           await (await DioHelper().dioClient)
-              .post<Map<String, dynamic>>('/api/auth/me');
+              .get<Map<String, dynamic>>('/api/user/current');
 
       _logger.finest('DataRemoteAuthenticationRepository getMe successful.');
-      final Me me = Me.fromJson(response.data!);
+
+      final Me me;
+      if(response.data != 'null'){
+         me = Me.fromJson(response.data!);
+      } else {
+        me = Me.fromJson(null);
+      }
+
 
       return me;
     } catch (e) {

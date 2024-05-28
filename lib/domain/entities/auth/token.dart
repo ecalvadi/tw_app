@@ -1,26 +1,30 @@
 class Token {
   Token({
-    this.accessToken,
-    this.tokenType,
-    this.expiresIn,
+    this.token,
+    this.pid,
+    this.name,
+    this.isVerified,
   });
 
-  String? accessToken;
-  String? tokenType;
-  int? expiresIn;
+  String? token;
+  String? pid;
+  String? name;
+  bool? isVerified;
 
   Token.fromJson(Map<String, dynamic>? json) {
     if (json == null) return;
-    accessToken = json['access_token'] as String?;
-    tokenType = json["token_type"] as String?;
-    expiresIn = json["expires_in"] as int?;
+    token = json['token'] as String?;
+    pid = json["pid"] as String?;
+    name = json["name"] as String?;
+    isVerified = json["is_verified"] as bool?;
   }
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = <String, dynamic>{};
-    if (accessToken != null) json["access_token"] = accessToken;
-    if (tokenType != null) json["token_type"] = tokenType;
-    if (expiresIn != null) json["expires_in"] = expiresIn;
+    if (token != null) json["token"] = token;
+    if (pid != null) json["pid"] = pid;
+    if (name != null) json["name"] = name;
+    if (isVerified != null) json["is_verified"] = isVerified;
     return json;
   }
 }

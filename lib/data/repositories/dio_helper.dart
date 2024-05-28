@@ -40,7 +40,7 @@ class DioHelper {
         String tokenStr = preferences.getString(Constants.token)!;
         Token token = Token.fromJson(jsonDecode(tokenStr));
 
-        options.headers['Authorization'] = 'Bearer ${token.accessToken}';
+        options.headers['Authorization'] = 'Bearer ${token.token}';
       }
 
       final String? contentType;

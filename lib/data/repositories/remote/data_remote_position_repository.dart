@@ -40,7 +40,7 @@ class DataRemotePositionRepository implements PositionRepository {
     try {
       final Response<Map<String, dynamic>> response =
           await (await DioHelper().dioClient)
-              .get<Map<String, dynamic>>('/api/positions/byUser');
+              .get<Map<String, dynamic>>('/api/positions/by-user');
 
       _logger.finest('DataRemotePositionRepository getMePosition successful.');
       final Position position = Position.fromJson(response.data!);
@@ -58,7 +58,7 @@ class DataRemotePositionRepository implements PositionRepository {
     try {
       final Map<String, dynamic> bodyRequest = position.toJson();
       final Response<Map<String, dynamic>> response =
-          await (await DioHelper().dioClient).put<Map<String, dynamic>>(
+          await (await DioHelper().dioClient).patch<Map<String, dynamic>>(
         '/api/positions/${position.id}',
         data: bodyRequest,
       );
